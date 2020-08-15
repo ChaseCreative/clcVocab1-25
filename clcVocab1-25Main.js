@@ -1,3 +1,31 @@
+//Timer variables
+//This sets the countdown at 15 sections
+var timeleft = 15;
+var countdown = setInterval(countDownTimer,1000);
+
+function countDownTimer(){
+
+document.getElementById("timer").style.color = "white";
+		document.getElementById("timer").innerHTML = timeleft;
+  		timeleft -= 1;
+  			if(timeleft <= 0)  {
+    			clearInterval(countdown);
+    			document.getElementById("timer").innerHTML = "Time's Up!";
+					document.getElementById("timer").style.color = "black";
+  }
+
+}
+
+//This stops the timer and resets it to 15 seconds
+function stopTimer() {
+
+  clearInterval(countdown);
+  document.getElementById("timer").innerHTML = "Timer";
+timeleft = 15;
+
+}
+
+stopTimer()
 
 function shuffle(array){
   var m = array.length, t, i;
@@ -52,6 +80,9 @@ console.log(width);
 
 
 function resetGame(){
+
+stopTimer();
+
 
 //This retrieves the data based on the user's selection
 userInputValue();
@@ -221,6 +252,14 @@ wheelock40 = [["aes, aeris, n.","bronze"],["dominus, dominī, m.","master (of a 
 stage = [["ō, āre, āvī, ātum",""],["ō, ēre, uī, itum",""],["a, ae, f.",""],["ō, īre, īvī, ītum",""],["ō, ere, ī, tum",""],["",""],["",""],["",""],["",""],["",""],["",""],["",""],["",""],["",""],["",""],["",""],["",""],["",""],["",""],["",""],["",""],["",""],["",""],["",""]];
 
 */
+function hideTimer(){
+  document.getElementById("timer").style.display = "none" ;
+}
+
+function unHideTimer(){
+  document.getElementById("timer").style.display = "block" ;
+}
+
 
 function hideBackBox(){
   document.getElementById("backBox").style.display = "none" ;
@@ -289,6 +328,7 @@ hideBox2();
 hideDemo();
 hideDemo2();
 hideBackBox();
+hideTimer()
 
 
 function changeBoxColorsTwo(){
@@ -306,6 +346,7 @@ function changeBoxColorsTwo(){
 
 
 function startGame(){
+
 
   //This extracts the user's input
   var x = document.getElementById("labelBox").value;
@@ -336,6 +377,9 @@ function startGame(){
 
 function restartGame(){
 
+document.getElementById("timer").style.color = "white";
+  stopTimer();
+
   //This sets the colors of box 1 for the first game
     document.getElementById("box1").innerHTML = "Select Stage!"
     document.getElementById("box1").style.background = "yellow";
@@ -354,6 +398,7 @@ function restartGame(){
   hideBox2();
   unHideBox1();
   hideBackBox();
+	hideTimer();
 
  //This activitates boxes 1 and 2 to start the Latin to English game
   document.getElementById("box1").onclick = function(){startGame()};
@@ -377,7 +422,7 @@ function restartGame(){
 
 function startEnglishGame(){
 
-
+countdown = setInterval(countDownTimer,1000);
   //document.getElementById("myBar").onclick = function(){move()};
   //This move() function increases the Progress Bar on each click.
   move();
@@ -433,7 +478,8 @@ removed = vocArry.splice(0,1);
 
 function giveLatinAnswerOne(){
 
-
+document.getElementById("timer").style.color = "white";
+stopTimer();
   unHideBox1();
   hideBox2();
   unHideDemo2();
@@ -453,8 +499,10 @@ function giveLatinAnswerOne(){
 
 function startLatinGame(){
 
+countdown = setInterval(countDownTimer,1000);
 
 unHideBackBox();
+unHideTimer();
   move();
 
   document.getElementById("myProgress").style.background= "white";
@@ -520,7 +568,8 @@ removed = vocArry.splice(0,1);
 
 function giveEnglishAnswerOne(){
 
-
+document.getElementById("timer").style.color = "white";
+stopTimer();
   unHideBox1();
   hideBox2();
   unHideDemo2();
